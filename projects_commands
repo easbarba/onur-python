@@ -1,0 +1,4 @@
+cli --grab
+cli --archive
+pytest
+black ./onur ./tests

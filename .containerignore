@@ -1,0 +1,6 @@
+.github
+.envrc
+LICENSE
+Makefile
+*.md
+manifest.scm
