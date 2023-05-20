@@ -1,4 +1,5 @@
-cli --grab
-cli --archive
 pytest
 black ./onur ./tests
+
+cli --grab
+cli --archive

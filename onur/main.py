@@ -13,7 +13,32 @@
 
 """Main class."""
 
+import argparse
+
 
 def welcome() -> str:
     """Say something."""
     return "Hello, World!"
+
+
+# ================================= CLI
+def cli():
+    """."""
+    parser = argparse.ArgumentParser(
+        prog="Gota", description="Packages installation made easy!"
+    )
+    parser.add_argument("-g", "--grab", help="grab all projects", action="store_true")
+    parser.add_argument("-a", "--archive", help="archive projects", action="store_true")
+    parser.add_argument(
+        "-i", "--verbose", help="provide additional information", action="store_true"
+    )
+    parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1")
+    args = parser.parse_args()
+
+    if args.archive:
+        print("Archiving")
+    elif args.grab:
+        print("Grabbing")
+    else:
+        parser.print_help()
+        exit(1)
