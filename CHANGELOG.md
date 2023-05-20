@@ -15,6 +15,10 @@ along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
 # CHANGELOG
 
+## 0.2.0
+
+- feat: config files discovery 
+- feat: parse one configuration file
 ## 0.1.0
 
 - initial structure

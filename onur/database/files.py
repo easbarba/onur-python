@@ -31,7 +31,10 @@ class Files:
 
     def namespath(self) -> list[str]:
         """."""
-        return [self.configDir.joinpath(item.name) for item in list(self.configDir.glob("*.json"))]
+        return [
+            self.configDir.joinpath(item.name)
+            for item in list(self.configDir.glob("*.json"))
+        ]
 
     def count(self) -> int:
         """."""

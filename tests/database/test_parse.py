@@ -13,27 +13,13 @@
 
 """."""
 
-from onur.database import files
+from onur.misc import globals
+
+from onur.database import parse
 
 
-f = files.Files()
+p = parse.Parse()
 
 
-def test_names():
-    assert sorted(f.names()) == ["etc.json", "misc.json"]
-
-
-def test_namespath():
-    assert str(sorted(f.namespath())[0]) == "/root/.config/onur/etc.json"
-
-
-def test_count():
-    assert f.count() == 2
-
-
-def test_exists():
-    assert f.exists()
-
-
-def test_path():
-    assert f.path() == "/root/.config/onur"
+def test_one_config():
+    assert p.one(globals.configDir.joinpath("etc.json").resolve())[0].name == "guzzle"

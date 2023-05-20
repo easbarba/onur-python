@@ -13,10 +13,30 @@
 
 """."""
 
+import json
+from pathlib import Path
 
-def one() -> Project:
-    """."""
+from ..models import project
 
 
-def all():
-    """."""
+class Parse:
+    """Parse configuration files."""
+
+    def __init__(self):
+        """..."""
+
+    def one(self, filepath: Path) -> list[project.Project]:
+        """Parse one configuration file."""
+        with open(str(filepath), "rb") as rawjson:
+            data = json.load(rawjson)
+
+        return [self.parse(pj) for pj in data]
+
+    def parse(self, pj: dict[str]) -> project.Project:
+        """Return a Project out of dict, branch defaulting to master."""
+        return project.Project(
+            name=pj["name"], url=pj["url"], branch=pj.get("branch", "master")
+        )
+
+    # def all(self):
+    # """Parse all configuration files."""

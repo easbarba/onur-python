@@ -13,27 +13,13 @@
 
 """."""
 
-from onur.database import files
+from . import Project
 
 
-f = files.Files()
+class Config:
+    """..."""
 
-
-def test_names():
-    assert sorted(f.names()) == ["etc.json", "misc.json"]
-
-
-def test_namespath():
-    assert str(sorted(f.namespath())[0]) == "/root/.config/onur/etc.json"
-
-
-def test_count():
-    assert f.count() == 2
-
-
-def test_exists():
-    assert f.exists()
-
-
-def test_path():
-    assert f.path() == "/root/.config/onur"
+    def __init__(self, topic: str, projects: list[Project]):
+        """..."""
+        self.topic = topic
+        self.projects = projects
