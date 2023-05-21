@@ -13,13 +13,13 @@
 
 """."""
 
-from . import Project
+from . import project
 
 
 class Config:
     """..."""
 
-    def __init__(self, topic: str, projects: list[Project]):
+    def __init__(self, topic: str, projects: list[project.Project]):
         """..."""
         self.topic = topic
         self.projects = projects

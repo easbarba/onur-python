@@ -16,8 +16,9 @@
 import json
 from pathlib import Path
 
-from ..models import project
+from ..models import project, config
 from ..misc import globals
+
 
 class Parse:
     """Parse configuration files."""
@@ -26,22 +27,20 @@ class Parse:
         """..."""
         self.configDir = globals.configDir
 
-    def one(self, filepath: Path) -> list[project.Project]:
+    def one(self, filepath: Path) -> list[config.Config]:
         """Parse one configuration file."""
         with open(str(filepath), "rb") as rawjson:
             data = json.load(rawjson)
 
-        return [self.parse(pj) for pj in data]
+        return config.Config(filepath.stem, [self.parse(pj) for pj in data])
 
-    def all(self) -> list[project.Project]:
+    def all(self) -> list[config.Config]:
         """Parse all configuration files."""
         configs: list[project.Project] = []
 
-        for config in self.configDir.glob('*.json'):
-            cfg = str(self.configDir.joinpath(config))
-            with open(cfg, "rb") as rawjson:
-                data = json.load(rawjson)
-                configs.append([self.parse(pj) for pj in data])
+        for config_current in self.configDir.glob("*.json"):
+            config_path = self.configDir.joinpath(config_current)
+            configs.append(self.one(config_path))
 
         return configs
 
@@ -50,4 +49,3 @@ class Parse:
         return project.Project(
             name=pj["name"], url=pj["url"], branch=pj.get("branch", "master")
         )
-

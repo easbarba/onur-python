@@ -23,8 +23,9 @@ p = parse.Parse()
 
 def test_one_config():
     cfg = globals.configDir.joinpath("etc.json").resolve()
-    assert p.one(cfg)[0].name == "guzzle"
+    assert p.one(cfg).projects[0].name == "guzzle"
 
 
 def test_all_config():
-    assert p.all()[0][0].name == "awesomewm"
+    assert p.all()[0].topic == "misc"
+    assert p.all()[0].projects[0].name == "awesomewm"
