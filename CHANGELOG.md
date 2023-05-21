@@ -19,6 +19,8 @@ along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
 - feat: config files discovery 
 - feat: parse one configuration file
+- feat: parse all configuration files found
+
 ## 0.1.0
 
 - initial structure
