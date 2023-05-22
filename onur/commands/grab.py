@@ -35,9 +35,9 @@ class Grab:
         for cfg in self.all:
             print(f"\n  topic: {cfg.topic}\n")
             for proj in cfg.projects:
-                print(f"name: {proj.name}")
+                self.print_info(proj)
                 filepath = Path(self.projectsDir.joinpath(cfg.topic, proj.name))
-                if filepath.joinpath(".git").exists():
+                if self.checkrepo(filepath):
                     self.pull(filepath)
                 else:
                     self.klone(filepath, proj)
@@ -58,3 +58,13 @@ class Grab:
                 "--single-branch",
             ],
         )
+
+    def checkrepo(self, filepath: Path) -> bool:
+        """."""
+        return filepath.joinpath(".git", "config").exists()
+
+    def print_info(self, proj: dict[str]) -> None:
+        """."""
+        print(f"name: {proj.name}")
+        print(f"url: {proj.url}")
+        print(f"branch: {proj.branch}\n")
