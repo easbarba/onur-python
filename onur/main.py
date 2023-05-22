@@ -15,6 +15,8 @@
 
 import argparse
 
+from .commands import grab
+
 
 def welcome() -> str:
     """Say something."""
@@ -38,7 +40,7 @@ def cli():
     if args.archive:
         print("Archiving")
     elif args.grab:
-        print("Grabbing")
+        grab.Grab().run()
     else:
         parser.print_help()
         exit(1)

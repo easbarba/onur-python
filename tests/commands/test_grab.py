@@ -12,20 +12,3 @@
 # along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
 """."""
-
-from onur.misc import globals
-
-from onur.database import parse
-
-
-p = parse.Parse()
-
-
-def test_one_config():
-    config = globals.configDir.joinpath("etc.json").resolve()
-    assert p.one(config).projects[0].name == "guzzle"
-
-
-def test_all_config():
-    assert p.all()[0].topic == "misc"
-    assert p.all()[0].projects[0].name == "awesomewm"

@@ -17,4 +17,4 @@ from pathlib import Path
 
 homeDir = Path.home()
 configDir = homeDir.joinpath(".config", "onur")
-destination = homeDir.joinpath("Projects")
+projectsDir = homeDir.joinpath("Projects")

@@ -32,7 +32,7 @@ class Parse:
         with open(str(filepath), "rb") as rawjson:
             data = json.load(rawjson)
 
-        return config.Config(filepath.stem, [self.parse(pj) for pj in data])
+        return config.Config(filepath.stem, [self.parse(proj) for proj in data])
 
     def all(self) -> list[config.Config]:
         """Parse all configuration files."""
@@ -44,8 +44,10 @@ class Parse:
 
         return configs
 
-    def parse(self, pj: dict[str]) -> project.Project:
+    def parse(self, proj: dict[str]) -> project.Project:
         """Return a Project out of dict, branch defaulting to master."""
         return project.Project(
-            name=pj["name"], url=pj["url"], branch=pj.get("branch", "master")
+            name=proj.get("name"),
+            url=proj.get("url"),
+            branch=proj.get("branch", "master"),
         )

@@ -15,6 +15,10 @@ along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
 # CHANGELOG
 
+## 0.3.0
+
+- feat: grab command pulls or clone repositories
+
 ## 0.2.0
 
 - feat: config files discovery 
