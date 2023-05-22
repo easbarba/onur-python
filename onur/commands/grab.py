@@ -18,6 +18,7 @@ from pathlib import Path
 from ..database import parse
 from ..misc import globals
 from ..models import project
+from ..misc import settings
 
 from git import Repo
 
@@ -29,18 +30,20 @@ class Grab:
         """..."""
         self.all = parse.Parse().all()
         self.projectsDir = globals.projectsDir
+        self.values = settings.values()
 
     def run(self) -> None:
         """..."""
-        for cfg in self.all:
-            print(f"\n  topic: {cfg.topic}\n")
-            for proj in cfg.projects:
-                self.print_info(proj)
-                filepath = Path(self.projectsDir.joinpath(cfg.topic, proj.name))
-                if self.checkrepo(filepath):
+        print(f"options: {self.__options()}\n")
+        for config in self.all:
+            print(f"\n  topic: {config.topic}\n")
+            for projekt in config.projects:
+                self.__print_info(projekt)
+                filepath = Path(self.projectsDir.joinpath(config.topic, projekt.name))
+                if self.__checkrepo(filepath):
                     self.pull(filepath)
                 else:
-                    self.klone(filepath, proj)
+                    self.klone(filepath, projekt)
 
     def pull(self, filepath: Path) -> None:
         """..."""
@@ -52,19 +55,30 @@ class Grab:
         Repo.clone_from(
             url=project.url,
             to_path=filepath,
-            multi_options=[
-                f"--branch={project.branch}",
-                "--depth=1",
-                "--single-branch",
-            ],
+            multi_options=self.__options(project).append(f"--branch={project.branch}"),
         )
 
-    def checkrepo(self, filepath: Path) -> bool:
+    def __checkrepo(self, filepath: Path) -> bool:
         """."""
         return filepath.joinpath(".git", "config").exists()
 
-    def print_info(self, proj: dict[str]) -> None:
+    def __print_info(self, projekt: dict[str]) -> None:
         """."""
-        print(f"name: {proj.name}")
-        print(f"url: {proj.url}")
-        print(f"branch: {proj.branch}\n")
+        print(f"name: {projekt.name}")
+        print(f"url: {projekt.url}")
+        print(f"branch: {projekt.branch}")
+
+    def __options(self) -> list[str]:
+        """.."""
+        options = []
+
+        if self.values.get("quiet") and self.values.get("quiet") is False:
+            options.append("--progress")
+
+        if self.values.get("depth"):
+            options.append(f"--depth={self.values.get('depth')}")
+
+        if self.values.get("single-branch") and self.values.get("quiet") is True:
+            options.append("--singlebranch")
+
+        return options

@@ -44,10 +44,10 @@ class Parse:
 
         return configs
 
-    def parse(self, proj: dict[str]) -> project.Project:
+    def parse(self, projekt: dict[str]) -> project.Project:
         """Return a Project out of dict, branch defaulting to master."""
         return project.Project(
-            name=proj.get("name"),
-            url=proj.get("url"),
-            branch=proj.get("branch", "master"),
+            name=projekt.get("name"),
+            url=projekt.get("url"),
+            branch=projekt.get("branch", "master"),
         )
