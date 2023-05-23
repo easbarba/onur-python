@@ -19,7 +19,7 @@ Easily manage multiple FLOSS repositories.
 
 # Installation
 
-[php](https://gitlab.com/easbarba/qas) | [api](https://gitlab.com/easbarba/qas_api) | [ruby](https://gitlab.com/easbarba/qas.rb) | [golang](https://gitlab.com/easbarba/qas_go) | [api-go](https://gitlab.com/easbarba/qas_api_go)
+[php](https://gitlab.com/easbarba/onur) | [api](https://gitlab.com/easbarba/qas_api) | [ruby](https://gitlab.com/easbarba/qas.rb) | [golang](https://gitlab.com/easbarba/qas_go) | [api-go](https://gitlab.com/easbarba/qas_api_go)
 
 ## Usage
 

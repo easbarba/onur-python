@@ -19,6 +19,7 @@ along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
 - feat: grab command pulls or clone repositories
 - feat: display verbose output if requested 
+- feat: add user settings tests
 
 ## 0.2.0
 
