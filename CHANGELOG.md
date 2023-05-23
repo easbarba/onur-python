@@ -18,6 +18,7 @@ along with Onur. If not, see <https://www.gnu.org/licenses/>.
 ## 0.3.0
 
 - feat: grab command pulls or clone repositories
+- feat: display verbose output if requested 
 
 ## 0.2.0
 

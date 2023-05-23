@@ -40,7 +40,7 @@ def cli():
     if args.archive:
         print("Archiving")
     elif args.grab:
-        grab.Grab().run()
+        grab.Grab(args.verbose).run()
     else:
         parser.print_help()
         exit(1)

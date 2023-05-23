@@ -26,17 +26,21 @@ from git import Repo
 class Grab:
     """..."""
 
-    def __init__(self):
+    def __init__(self, verbose: bool):
         """..."""
         self.all = parse.Parse().all()
         self.projectsDir = globals.projectsDir
         self.values = settings.values()
+        self.verbose = verbose
 
     def run(self) -> None:
         """..."""
-        print(f"options: {self.__options()}\n")
+        if self.verbose:
+            print(f"options: {self.__options()}\n")
+
         for config in self.all:
-            print(f"\n  topic: {config.topic}\n")
+            print(f"\n ❯ {config.topic}\n")
+
             for projekt in config.projects:
                 self.__print_info(projekt)
                 filepath = Path(self.projectsDir.joinpath(config.topic, projekt.name))
@@ -52,11 +56,8 @@ class Grab:
 
     def klone(self, filepath: Path, project: project.Project) -> None:
         """..."""
-        Repo.clone_from(
-            url=project.url,
-            to_path=filepath,
-            multi_options=self.__options(project).append(f"--branch={project.branch}"),
-        )
+        options = self.__options().append(f"--branch={project.branch}")
+        Repo.clone_from(url=project.url, to_path=filepath, multi_options=options)
 
     def __checkrepo(self, filepath: Path) -> bool:
         """."""
@@ -65,12 +66,14 @@ class Grab:
     def __print_info(self, projekt: dict[str]) -> None:
         """."""
         print(f"name: {projekt.name}")
-        print(f"url: {projekt.url}")
-        print(f"branch: {projekt.branch}")
+
+        if self.verbose:
+            print(f"url: {projekt.url}")
+            print(f"branch: {projekt.branch}\n")
 
     def __options(self) -> list[str]:
         """.."""
-        options = []
+        options: list[str] = []
 
         if self.values.get("quiet") and self.values.get("quiet") is False:
             options.append("--progress")
