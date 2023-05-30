@@ -12,12 +12,15 @@ cache:
     - venv/
 
 before_script:
-  - python --version ; pip --version  # For debugging
+  - python --version ; pip --version # For debugging
 
-test:
+Integration Tests:
+  stage: test
   before_script:
+    - python -m venv venv
+    - bash ./venv/bin/activate
     - ./prepare.bash
   script:
-    - pip install pip poetry
-    - poetry install
-    - poetry run pytest
+    - pip install --upgrade pip
+    - pip install -r ./requirements.txt
+    - pytest

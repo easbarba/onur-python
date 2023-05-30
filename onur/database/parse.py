@@ -16,8 +16,8 @@
 import json
 from pathlib import Path
 
-from ..models import project, config
-from ..misc import globals
+from onur.models import project, config
+from onur.misc import globals
 
 
 class Parse:

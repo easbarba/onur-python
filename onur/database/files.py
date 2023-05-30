@@ -15,7 +15,7 @@
 
 from pathlib import Path
 
-from ..misc import globals
+from onur.misc import globals
 
 
 class Files:
@@ -27,7 +27,9 @@ class Files:
 
     def names(self) -> list[str]:
         """."""
-        return [item.name for item in list(self.configDir.glob("*.json"))]
+        return [
+            item.name for item in list(self.configDir.glob("*.json")) if item.exists()
+        ]
 
     def namespath(self) -> list[str]:
         """."""

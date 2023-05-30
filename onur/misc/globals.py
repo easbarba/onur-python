@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
-"""."""
+"""Globals folders location"""
 
 from pathlib import Path
 

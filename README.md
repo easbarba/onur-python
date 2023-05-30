@@ -19,7 +19,7 @@ Easily manage multiple FLOSS repositories.
 
 # Installation
 
-[php](https://gitlab.com/easbarba/onur) | [api](https://gitlab.com/easbarba/qas_api) | [ruby](https://gitlab.com/easbarba/qas.rb) | [golang](https://gitlab.com/easbarba/qas_go) | [api-go](https://gitlab.com/easbarba/qas_api_go)
+[java](https://gitlab.com/easbarba/onur-java) | [php](https://gitlab.com/easbarba/onur_php) | [ruby](https://gitlab.com/easbarba/qas.rb) | [go](https://gitlab.com/easbarba/qas_go) | [api-go](https://gitlab.com/easbarba/qas_api_go)
 
 ## Usage
 
@@ -29,8 +29,8 @@ By default it looks for configuration files at `$XDG_CONFIG/onur` or in the
 directory set in the `$ONUR_CONFIG_HOME` environment variable.
 
 ```shell
-onur grab
-onur archive nuxt,awesomewm,gitignore
+onur --grab
+onur --archive nuxt,awesomewm,gitignore
 ```
 
 ## Configuration file

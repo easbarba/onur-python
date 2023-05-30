@@ -18,23 +18,18 @@ import argparse
 from .commands import grab
 
 
-def welcome() -> str:
-    """Say something."""
-    return "Hello, World!"
-
-
 # ================================= CLI
 def cli():
     """."""
     parser = argparse.ArgumentParser(
-        prog="Gota", description="Packages installation made easy!"
+        prog="Onur", description="Easily manage multiple FLOSS repositories."
     )
     parser.add_argument("-g", "--grab", help="grab all projects", action="store_true")
     parser.add_argument("-a", "--archive", help="archive projects", action="store_true")
     parser.add_argument(
         "-i", "--verbose", help="provide additional information", action="store_true"
     )
-    parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1")
+    parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.4")
     args = parser.parse_args()
 
     if args.archive:
@@ -44,3 +39,7 @@ def cli():
     else:
         parser.print_help()
         exit(1)
+
+
+if __name__ == "__main__":
+    cli()

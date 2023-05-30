@@ -15,10 +15,10 @@
 
 from pathlib import Path
 
-from ..database import parse
-from ..misc import globals
-from ..models import project
-from ..misc import settings
+from onur.database import parse
+from onur.misc import globals
+from onur.models import project
+from onur.misc import settings
 
 from git import Repo
 

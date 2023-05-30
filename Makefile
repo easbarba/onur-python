@@ -43,4 +43,13 @@ prfix:
 		--workdir /app \
 		${IMAGE_REPL} bash -c './prfix.bash'
 
-.PHONY: command prfix build repl
+grab:
+	python3 -m onur --grab
+
+install:
+	python3 -m pip install . --break-system-packages
+
+uninstall:
+	python3 -m pip uninstall onur --break-system-packages
+
+.PHONY: command prfix build repl install uninstall grab

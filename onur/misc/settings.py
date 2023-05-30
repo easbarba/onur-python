@@ -13,7 +13,7 @@
 
 """."""
 
-from .globals import configDir
+from onur.misc.globals import configDir
 
 import tomllib
 

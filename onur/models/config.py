@@ -13,7 +13,7 @@
 
 """."""
 
-from . import project
+from onur.models import project
 
 
 class Config:

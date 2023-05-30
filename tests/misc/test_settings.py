@@ -19,14 +19,14 @@ from onur.misc import settings
 
 def test_singlebranch() -> None:
     """Single branch?."""
-    assert settings.values().get('single-branch') is True
+    assert settings.values().get("single-branch") is True
 
 
 def test_quite_noisy() -> None:
     """I like it noisy!."""
-    assert settings.values().get('quiet') is False
+    assert settings.values().get("quiet") is False
 
 
 def test_depth() -> None:
     """And its depth?."""
-    assert settings.values().get('depth') == 3
+    assert settings.values().get("depth") == 3

@@ -1,20 +1,11 @@
-[tool.poetry]
+[project]
 name = "onur"
-version = "0.3.0"
+version = "0.4.0"
 description = "Easily manage multiple FLOSS repositories"
-authors = ["easbarba <easbarba@outlook.com>"]
+authors = [{ name="easbarba", email="easbarba@outlook.com" }]
 readme = "README.md"
+requires-python = ">=3.11"
 
-[tool.poetry.dependencies]
-python = "^3.11"
-pytest = "^7.3.1"
-black = "^23.3.0"
-gitpython = "^3.1.31"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-cli = "onur.main:cli"
+[project.urls]
+"Homepage" = "https://gitlab.com/easbarba/onur2"
+"Bug Tracker" = "https://gitlab.com/easbarba/onur2/-/issues"
