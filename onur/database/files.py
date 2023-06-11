@@ -28,14 +28,14 @@ class Files:
     def names(self) -> list[str]:
         """."""
         return [
-            item.name for item in list(self.configDir.glob("*.json")) if item.exists()
+            item.name for item in list(self.configDir.glob("*.json")) if item.exists() is True
         ]
 
     def namespath(self) -> list[str]:
         """."""
         return [
             self.configDir.joinpath(item.name)
-            for item in list(self.configDir.glob("*.json"))
+            for item in list(self.configDir.glob("*.json")) if item.exists() is True
         ]
 
     def count(self) -> int:
