@@ -15,10 +15,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Poetry
+      - name: Update Pip
         run: |
-          pip install --upgrade pip poetry
-          poetry install
+          pip install --upgrade pip
 
       - name: Prepare examples configuration files
         run: |
@@ -26,4 +25,4 @@ jobs:
           cp -r ./examples/* ~/.config/onur
 
       - name: Tests
-        run: poetry run pytest
+        run: pytest

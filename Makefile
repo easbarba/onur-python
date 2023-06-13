@@ -35,7 +35,7 @@ command:
 	${RUNNER} run --rm -it \
 		--volume ${PWD}:/app:Z \
 		--workdir /app \
-		${FULLNAME} bash -c 'poetry run $(shell cat projects_commands | fzf)'
+		${FULLNAME} bash -c '$(shell cat commands | fzf)'
 
 prfix:
 	${RUNNER} run --rm -it \

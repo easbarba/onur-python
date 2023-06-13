@@ -24,21 +24,15 @@ def cli():
     parser = argparse.ArgumentParser(
         prog="Onur", description="Easily manage multiple FLOSS repositories."
     )
-    parser.add_argument("-g", "--grab", help="grab all projects", action="store_true")
-    parser.add_argument("-a", "--archive", help="archive projects", action="store_true")
+    # parser.add_argument("-g", "--grab", help="grab all projects", action="store_true")
+    # parser.add_argument("-a", "--archive", help="archive projects", action="store_true")
     parser.add_argument(
         "-i", "--verbose", help="provide additional information", action="store_true"
     )
     parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.4")
     args = parser.parse_args()
 
-    if args.archive:
-        print("Archiving")
-    elif args.grab:
-        grab.Grab(args.verbose).run()
-    else:
-        parser.print_help()
-        exit(1)
+    grab.Grab(args.verbose).run()
 
 
 if __name__ == "__main__":

@@ -17,31 +17,27 @@ along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
 Easily manage multiple FLOSS repositories.
 
+`Onur` grab all repositories listed in the configuration files.
+
 # Installation
 
 [php](https://gitlab.com/easbarba/onur_php) | [ruby](https://gitlab.com/easbarba/qas.rb) | [go](https://gitlab.com/easbarba/qas_go) | [api-go](https://gitlab.com/easbarba/qas_api_go)
 
 ## Usage
 
-`onur` consumes configuration in the following manners:
+`Onur` consumes configurations files at `$XDG_CONFIG/onur`.
 
-By default it looks for configuration files at `$XDG_CONFIG/onur` or in the
-directory set in the `$ONUR_CONFIG_HOME` environment variable.
-
-```shell
-onur --grab
-onur --archive nuxt,awesomewm,gitignore
-```
+- `$ONUR_CONFIG_HOME` environment variable is available to define a new location of configuration files.
+- repositories are stored in the `$HOME/Projects` folder.
 
 ## Configuration file
 
-A `onur` single configuration file:
+A `onur` configuration file is just a single list providing name and url of projects, branch may be provided if not the usual `master` branch:
 
 ```json
 [
   {
     "name": "awesomewm",
-    "branch": "dev",
     "url": "https://github.com/awesomeWM/awesome"
   },
   {
@@ -55,6 +51,8 @@ A `onur` single configuration file:
 More examples of configuration files are at `examples`.
 
 ## Settings
+
+A TOML settings file may define the behavior of `onur`:
 
 ```toml
 [base]
@@ -71,10 +69,6 @@ Consult `onur --help` for more options.
 
 In a system with GNU Guix binary installed, its even easier to grab all
 dependencies: `guix shell`.
-
-## TODO
-
-Check the `TODO.md` for more information.
 
 ## LICENSE
 

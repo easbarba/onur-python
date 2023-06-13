@@ -39,7 +39,7 @@ class Grab:
             print(f"options: {self.__options()}\n")
 
         for config in self.all:
-            print(f"\n ❯ {config.topic}\n")
+            print(f"\n{config.topic}:\n")
 
             for projekt in config.projects:
                 self.__print_info(projekt)
@@ -65,11 +65,12 @@ class Grab:
 
     def __print_info(self, projekt: dict[str]) -> None:
         """."""
-        print(f"name: {projekt.name}")
+        message = projekt.name
 
         if self.verbose:
-            print(f"url: {projekt.url}")
-            print(f"branch: {projekt.branch}\n")
+            message += f" - {projekt.url} - {projekt.branch}"
+
+        print(message)
 
     def __options(self) -> list[str]:
         """.."""
