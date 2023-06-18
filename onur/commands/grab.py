@@ -17,10 +17,8 @@ from pathlib import Path
 
 from onur.database import parse
 from onur.misc import globals
-from onur.models import project
 from onur.misc import settings
-
-from git import Repo
+from onur.actions import klone, pull
 
 
 class Grab:
@@ -44,20 +42,11 @@ class Grab:
             for projekt in config.projects:
                 self.__print_info(projekt)
                 filepath = Path(self.projectsDir.joinpath(config.topic, projekt.name))
+
                 if self.__checkrepo(filepath):
-                    self.pull(filepath)
+                    pull.Pull(filepath).run()
                 else:
-                    self.klone(filepath, projekt)
-
-    def pull(self, filepath: Path) -> None:
-        """..."""
-        o = Repo(filepath).remotes.origin
-        o.pull()
-
-    def klone(self, filepath: Path, project: project.Project) -> None:
-        """..."""
-        options = self.__options().append(f"--branch={project.branch}")
-        Repo.clone_from(url=project.url, to_path=filepath, multi_options=options)
+                    klone.Klone(filepath, projekt, self.__options()).run()
 
     def __checkrepo(self, filepath: Path) -> bool:
         """."""

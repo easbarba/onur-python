@@ -20,7 +20,7 @@ from .commands import grab
 
 # ================================= CLI
 def cli():
-    """."""
+    """Provide cli interface."""
     parser = argparse.ArgumentParser(
         prog="Onur", description="Easily manage multiple FLOSS repositories."
     )
@@ -30,10 +30,14 @@ def cli():
         "-i", "--verbose", help="provide additional information", action="store_true"
     )
     parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.4")
-    args = parser.parse_args()
 
-    grab.Grab(args.verbose).run()
+    return parser.parse_args()
+
+
+def run() -> None:
+    """..."""
+    grab.Grab(cli().verbose).run()
 
 
 if __name__ == "__main__":
-    cli()
+    run()

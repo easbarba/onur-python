@@ -15,8 +15,7 @@
 
 from pathlib import Path
 
-from onur.misc import globals
-
+from onur.misc import globals, log
 
 class Files:
     """Farming of configuration files."""
@@ -37,6 +36,8 @@ class Files:
         for f in self.configDir.glob(f"*.{extension}"):
             if f.exists():
                 result.append(f)
+            else:
+                log.error(f"suspicious file ignored: {f}")
 
         return list(result)
 

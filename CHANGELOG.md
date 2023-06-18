@@ -15,6 +15,11 @@ along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
 # CHANGELOG
 
+## 0.4.1
+
+- feat: actions do all hard work
+- feat: log miscellaneous information
+
 ## 0.4.0
 
 - chore: venv-based project
@@ -22,12 +27,12 @@ along with Onur. If not, see <https://www.gnu.org/licenses/>.
 ## 0.3.0
 
 - feat: grab command pulls or clone repositories
-- feat: display verbose output if requested 
+- feat: display verbose output if requested
 - feat: add user settings tests
 
 ## 0.2.0
 
-- feat: config files discovery 
+- feat: config files discovery
 - feat: parse one configuration file
 - feat: parse all configuration files found
 - feat: parse config as Config object

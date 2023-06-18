@@ -1,6 +1,6 @@
 [project]
 name = "onur"
-version = "0.4.0"
+version = "0.4.1"
 description = "Easily manage multiple FLOSS repositories"
 authors = [{ name="easbarba", email="easbarba@outlook.com" }]
 readme = "README.md"
