@@ -19,33 +19,39 @@ from onur.misc import globals
 
 
 class Files:
-    """Farming of files."""
+    """Farming of configuration files."""
 
     def __init__(self):
         """.."""
         self.configDir: Path = globals.configDir
 
     def names(self) -> list[str]:
-        """."""
-        return [
-            item.name for item in list(self.configDir.glob("*.json")) if item.exists() is True
-        ]
+        """Name of all configuration files found."""
+        return [item.name for item in self.valid()]
+
+    def valid(self) -> list[str]:
+        """Name of all acceptable files."""
+        extension = "json"
+        result = []
+
+        for f in self.configDir.glob(f"*.{extension}"):
+            if f.exists():
+                result.append(f)
+
+        return list(result)
 
     def namespath(self) -> list[str]:
-        """."""
-        return [
-            self.configDir.joinpath(item.name)
-            for item in list(self.configDir.glob("*.json")) if item.exists() is True
-        ]
+        """File name with path."""
+        return [self.configDir.joinpath(item.name) for item in self.valid()]
 
     def count(self) -> int:
-        """."""
-        return len(list(self.configDir.glob("*.json")))
+        """Count of all files."""
+        return len(self.valid())
 
     def exists(self) -> bool:
-        """."""
+        """Check if Configuration folder exist."""
         return self.configDir.exists()
 
     def path(self) -> str:
-        """."""
+        """Configurtion folder path as string."""
         return str(self.configDir)

@@ -20,6 +20,7 @@ from onur.models import project, config
 from onur.misc import globals
 from . import files
 
+
 class Parse:
     """Parse configuration files."""
 
