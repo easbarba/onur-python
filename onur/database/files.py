@@ -15,14 +15,15 @@
 
 from pathlib import Path
 
-from onur.misc import globals, log
+from onur.misc import info, log
+
 
 class Files:
     """Farming of configuration files."""
 
     def __init__(self):
         """.."""
-        self.configDir: Path = globals.configDir
+        self.config_dir: Path = info.config_dir
 
     def names(self) -> list[str]:
         """Name of all configuration files found."""
@@ -33,17 +34,17 @@ class Files:
         extension = "json"
         result = []
 
-        for f in self.configDir.glob(f"*.{extension}"):
-            if f.exists():
-                result.append(f)
+        for files in self.config_dir.glob(f"*.{extension}"):
+            if files.exists():
+                result.append(files)
             else:
-                log.error(f"suspicious file ignored: {f}")
+                log.error(f"suspicious file ignored: {files}")
 
         return list(result)
 
     def namespath(self) -> list[str]:
         """File name with path."""
-        return [self.configDir.joinpath(item.name) for item in self.valid()]
+        return [self.config_dir.joinpath(item.name) for item in self.valid()]
 
     def count(self) -> int:
         """Count of all files."""
@@ -51,8 +52,8 @@ class Files:
 
     def exists(self) -> bool:
         """Check if Configuration folder exist."""
-        return self.configDir.exists()
+        return self.config_dir.exists()
 
     def path(self) -> str:
         """Configurtion folder path as string."""
-        return str(self.configDir)
+        return str(self.config_dir)

@@ -11,10 +11,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
-"""Globals folders location"""
+"""Information on sensible folders location and alike."""
 
 from pathlib import Path
 
-homeDir = Path.home()
-configDir = homeDir.joinpath(".config", "onur")
-projectsDir = homeDir.joinpath("Projects")
+home_dir = Path.home()
+config_dir = home_dir.joinpath(".config", "onur")
+projects_dir = home_dir.joinpath("Projects")

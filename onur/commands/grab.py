@@ -16,7 +16,7 @@
 from pathlib import Path
 
 from onur.database import parse
-from onur.misc import globals
+from onur.misc import info
 from onur.misc import settings
 from onur.actions import klone, pull
 
@@ -27,7 +27,7 @@ class Grab:
     def __init__(self, verbose: bool):
         """..."""
         self.all = parse.Parse().all()
-        self.projectsDir = globals.projectsDir
+        self.projects_dir = info.projects_dir
         self.values = settings.values()
         self.verbose = verbose
 
@@ -41,7 +41,7 @@ class Grab:
 
             for projekt in config.projects:
                 self.__print_info(projekt)
-                filepath = Path(self.projectsDir.joinpath(config.topic, projekt.name))
+                filepath = Path(self.projects_dir.joinpath(config.topic, projekt.name))
 
                 if self.__checkrepo(filepath):
                     pull.Pull(filepath).run()

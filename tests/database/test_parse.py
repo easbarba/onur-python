@@ -13,7 +13,7 @@
 
 """."""
 
-from onur.misc import globals
+from onur.misc import info
 
 from onur.database import parse
 
@@ -22,7 +22,7 @@ p = parse.Parse()
 
 
 def test_one_config():
-    config = globals.configDir.joinpath("etc.json").resolve()
+    config = info.config_dir.joinpath("etc.json").resolve()
     assert p.one(config).projects[0].name == "guzzle"
 
 

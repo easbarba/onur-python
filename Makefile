@@ -20,7 +20,7 @@ RUNNER ?= podman
 NAME := onur
 VERSION := $(shell gawk '/version/ {version=substr($$3, 2,5); print version}' pyproject.toml )
 FULLNAME := ${USER}/${NAME}:${VERSION}
-IMAGE_REPL := python:3-slim
+IMAGE_REPL := python:3.11
 
 build:
 	${RUNNER} build --file ./Containerfile --tag ${FULLNAME}

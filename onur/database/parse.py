@@ -17,7 +17,7 @@ import json
 from pathlib import Path
 
 from onur.models import project, config
-from onur.misc import globals
+from onur.misc import info
 from . import files
 
 
@@ -26,7 +26,7 @@ class Parse:
 
     def __init__(self):
         """..."""
-        self.configDir = globals.configDir
+        self.config_dir = info.config_dir
         self.files = files.Files()
 
     def one(self, filepath: Path) -> list[config.Config]:
@@ -41,7 +41,7 @@ class Parse:
         configs: list[project.Project] = []
 
         for config_current in self.files.namespath():
-            config_path = self.configDir.joinpath(config_current)
+            config_path = self.config_dir.joinpath(config_current)
             configs.append(self.one(config_path))
 
         return configs

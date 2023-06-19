@@ -13,7 +13,7 @@
 
 """."""
 
-from onur.misc.globals import configDir
+from .info import config_dir
 
 import tomllib
 
@@ -21,7 +21,7 @@ import tomllib
 def values() -> dict[str]:
     """Parse configuration files."""
     try:
-        with open(configDir.joinpath("settings.toml"), "rb") as rawdata:
+        with open(config_dir.joinpath("settings.toml"), "rb") as rawdata:
             data: dict[str] = tomllib.load(rawdata)
     except tomllib.TOMLDecodeError as tew:
         print("Error in configuration found:\n", tew)

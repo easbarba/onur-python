@@ -15,13 +15,13 @@
 
 import logging
 
-from . import globals
+from .info import config_dir
 
 
 def loggin():
     """..."""
     logging.basicConfig(
-        filename=globals.configDir.joinpath("onur.log"),
+        filename=config_dir.joinpath("onur.log"),
         encoding="utf-8",
         level=logging.INFO,
     )

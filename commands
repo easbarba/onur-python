@@ -1,4 +1,5 @@
 pytest
+pylint ./onur
 black ./onur ./tests
 
 python -m onur --grab

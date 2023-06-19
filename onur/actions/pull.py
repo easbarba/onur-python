@@ -18,6 +18,7 @@ from pathlib import Path
 
 from git import Repo
 
+
 class Pull:
     """Pull update from repository."""
 
