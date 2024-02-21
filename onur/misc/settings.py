@@ -27,4 +27,4 @@ def values() -> dict[str]:
         print("Error in configuration found:\n", tew)
         exit(1)
 
-    return data["base"]
+    return data

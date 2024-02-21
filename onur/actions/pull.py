@@ -24,9 +24,11 @@ class Pull:
 
     def __init__(self, filepath: Path):
         """..."""
-        self.filepath = filepath
+        self.repopath = filepath
 
     def run(self) -> None:
         """..."""
-        o = Repo(self.filepath).remotes.origin
-        o.pull()
+        repo = Repo(self.repopath)
+        repo.git.reset(hard=True)
+        o = repo.remotes.origin
+        o.pull(rebase=True)

@@ -17,6 +17,7 @@ along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
 ## 0.4.1
 
+- feat: pull and rebase repositories
 - feat: actions do all hard work
 - feat: log miscellaneous information
 
