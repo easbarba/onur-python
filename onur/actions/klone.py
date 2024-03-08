@@ -29,5 +29,7 @@ class Klone:
 
     def run(self) -> None:
         """..."""
-        opts = self.options.append(f"--branch={self.project.branch}")
-        Repo.clone_from(url=self.project.url, to_path=self.filepath, multi_options=opts)
+        self.options.append(f"--branch={self.project.branch}")
+        Repo.clone_from(
+            url=self.project.url, to_path=self.filepath, multi_options=self.options
+        )

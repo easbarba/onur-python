@@ -2,5 +2,6 @@ pytest
 pylint ./onur
 black ./onur ./tests
 
+python -m onur
 python -m onur --grab
 python -m onur --archive

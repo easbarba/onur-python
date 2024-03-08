@@ -19,37 +19,45 @@ RUNNER ?= podman
 
 NAME := onur
 VERSION := $(shell gawk '/version/ {version=substr($$3, 2,5); print version}' pyproject.toml )
-FULLNAME := ${USER}/${NAME}:${VERSION}
-IMAGE_REPL := python:3.11
+IMAGE_NAME := registry.gitlab.com/${USER}/${NAME}:${VERSION}
 
-build:
-	${RUNNER} build --file ./Containerfile --tag ${FULLNAME}
-
+.phony: repl
 repl:
 	${RUNNER} run --rm -it \
 		--volume ${PWD}:/app:Z \
 		--workdir /app \
-		${IMAGE_REPL} bash
+		${IMAGE_NAME} bash
 
-command:
-	${RUNNER} run --rm -it \
-		--volume ${PWD}:/app:Z \
-		--workdir /app \
-		${FULLNAME} bash -c '$(shell cat commands | fzf)'
-
+.phony: prfix
 prfix:
 	${RUNNER} run --rm -it \
 		--volume ${PWD}:/app:Z \
 		--workdir /app \
-		${IMAGE_REPL} bash -c './prfix.bash'
+		${IMAGE_NAME} bash -c './prfix.bash'
 
+.phony: grab
 grab:
 	python3 -m onur --grab
 
+.phony: install
 install:
 	python3 -m pip install . --break-system-packages
 
+.phony: uninstall
 uninstall:
 	python3 -m pip uninstall onur --break-system-packages
 
-.PHONY: command prfix build repl install uninstall grab
+.phony: command
+command:
+	${RUNNER} run --rm -it \
+		--volume ${PWD}:/app:Z \
+		--workdir /app \
+		${IMAGE_NAME} bash -c '$(shell cat commands | fzf)'
+
+.phony: image.build
+image.build:
+	${RUNNER} build --file ./Containerfile --tag ${IMAGE_NAME}
+
+.PHONY: image.publish
+image.publish:
+	${RUNNER} push ${IMAGE_NAME}

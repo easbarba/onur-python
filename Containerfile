@@ -1,10 +1,14 @@
-FROM python:3.11
+FROM python:3.12
+
 WORKDIR /app
 RUN pip install --upgrade pip
-COPY ./requirements.txt .
+
+COPY ./pyproject.toml .
 RUN python -m venv venv
 RUN bash ./venv/bin/activate
-RUN pip install -r requirements.txt
+RUN pip install .
+
 COPY . .
 RUN ./prepare.bash
+
 CMD [ "pytest" ]

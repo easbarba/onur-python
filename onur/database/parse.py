@@ -15,6 +15,7 @@
 
 import json
 from pathlib import Path
+from typing import Dict
 
 from onur.models import project, config
 from onur.misc import info
@@ -29,15 +30,21 @@ class Parse:
         self.config_dir = info.config_dir
         self.files = files.Files()
 
-    def one(self, filepath: Path) -> list[config.Config]:
-        """Parse one configuration file."""
-        with open(str(filepath), "rb") as rawjson:
-            data = json.load(rawjson)
+    def one(self, filepath: Path) -> config.Config:
+        """Parse file to a configuration object."""
+        with open(str(filepath), "rb") as json_raw:
+            data = json.load(json_raw)
 
-        return config.Config(filepath.stem, [self.parse(proj) for proj in data])
+        return config.Config(
+            filepath.stem,
+            {
+                key: [self.to_project(projekt) for projekt in value]
+                for key, value in data.items()
+            },
+        )
 
     def all(self) -> list[config.Config]:
-        """Parse all configuration files."""
+        """Bundle all configuration."""
         configs: list[project.Project] = []
 
         for config_current in self.files.namespath():
@@ -46,7 +53,7 @@ class Parse:
 
         return configs
 
-    def parse(self, projekt: dict[str]) -> project.Project:
+    def to_project(self, projekt: Dict[str, str]) -> project.Project:
         """Return a Project out of dict, branch defaulting to master."""
         return project.Project(
             name=projekt.get("name"),

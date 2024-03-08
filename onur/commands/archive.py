@@ -13,14 +13,18 @@
 
 """."""
 
-from onur.models import project
-from typing import Dict
+# from pathlib import Path
+
+# from termcolor import colored
+
+# from onur.database import parse
+# from onur.misc import info
+# from onur.misc import settings
 
 
-class Config:
+class Archive:
     """..."""
 
-    def __init__(self, topic: str, projects: Dict[str, project.Project]):
+    def __init__(self, verbose: bool):
         """..."""
-        self.topic = topic
-        self.projects = projects
+        self.verbose = verbose

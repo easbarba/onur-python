@@ -21,9 +21,12 @@ Easily manage multiple FLOSS repositories.
 
 # Installation
 
-[php](https://github.com/easbarba/onur_php) | [ruby](https://github.com/easbarba/qas.rb) | [go](https://github.com/easbarba/qas_go) | [api-go](https://github.com/easbarba/qas_api_go)
+[c](https://gitlab.com/easbarba/onur-c) | [java](https://gitlab.com/easbarba/onur-java) | [dotnet](https://gitlab.com/easbarba/onur-dotnet) | [php](https://gitlab.com/easbarba/onur-php) | [go](https://gitlab.com/easbarba/onur-go) | [ruby](https://gitlab.com/easbarba/onur-ruby)
 
 ## Usage
+
+  python3 -m onur
+  python3 -m onur --verbose
 
 `Onur` consumes configurations files at `$XDG_CONFIG/onur`.
 
@@ -35,17 +38,30 @@ Easily manage multiple FLOSS repositories.
 A `onur` configuration file is just a single list providing name and url of projects, branch may be provided if not the usual `master` branch:
 
 ```json
-[
-  {
-    "name": "awesomewm",
-    "url": "https://github.com/awesomeWM/awesome"
-  },
-  {
-    "name": "nuxt",
-    "branch": "main",
-    "url": "https://github.com/nuxt/framework"
-  }
-]
+{
+  "main": [
+    {
+      "name": "awesomewm",
+      "url": "https://github.com/awesomeWM/awesome"
+    },
+    {
+      "name": "nuxt",
+      "branch": "main",
+      "url": "https://github.com/nuxt/framework"
+    }
+  ],
+  "misc": [
+    {
+      "name": "awesomewm",
+      "url": "https://github.com/awesomeWM/awesome"
+    },
+    {
+      "name": "nuxt",
+      "branch": "main",
+      "url": "https://github.com/nuxt/framework"
+    }
+  ]
+}
 ```
 
 More examples of configuration files are at `examples`.

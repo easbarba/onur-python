@@ -1,7 +1,7 @@
 stages:
   - test
 
-image: python:3.11
+image: registry.gitlab.com/easbarba/onur:0.5.0
 
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"

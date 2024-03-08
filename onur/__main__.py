@@ -11,33 +11,44 @@
 # You should have received a copy of the GNU General Public License
 # along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
-"""Main class."""
+"""Its show time."""
 
 import argparse
 
-from .commands import grab
+from .commands import grab, archive
 
 
 # ================================= CLI
-def cli():
-    """Provide cli interface."""
-    parser = argparse.ArgumentParser(
-        prog="Onur", description="Easily manage multiple FLOSS repositories."
-    )
-    # parser.add_argument("-g", "--grab", help="grab all projects", action="store_true")
-    # parser.add_argument("-a", "--archive", help="archive projects", action="store_true")
-    parser.add_argument(
-        "-i", "--verbose", help="provide additional information", action="store_true"
-    )
-    parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.4")
-
-    return parser.parse_args()
 
 
-def run() -> None:
-    """..."""
-    grab.Grab(cli().verbose).run()
+parser = argparse.ArgumentParser(
+    prog="Onur", description="Easily manage multiple FLOSS repositories."
+)
+parser.add_argument("-g", "--grab", help="grab all projects", action="store_true")
+parser.add_argument("-a", "--archive", help="archive projects", action="store_true")
+parser.add_argument(
+    "-i", "--verbose", help="provide additional information", action="store_true"
+)
+parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.5.0")
+args = parser.parse_args()
+
+
+def main() -> None:
+    """Lets just do it."""
+    try:
+        if args.grab:
+            grab.Grab(args.verbose).run()
+            return
+
+        if args.archive:
+            archive.Archive(args.verbose).run()
+            return
+
+        parser.print_help()
+    except KeyboardInterrupt:
+        print("Ok, exiting!")
+        exit(0)
 
 
 if __name__ == "__main__":
-    run()
+    main()

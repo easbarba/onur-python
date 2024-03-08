@@ -15,9 +15,13 @@ along with Onur. If not, see <https://www.gnu.org/licenses/>.
 
 # CHANGELOG
 
+## 0.5.0
+
+- feat: configuration organized per sub topic
+
 ## 0.4.1
 
-- feat: pull and rebase repositories
+- feat: reset and pull rebase repositories
 - feat: actions do all hard work
 - feat: log miscellaneous information
 

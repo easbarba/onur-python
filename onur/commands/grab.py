@@ -15,6 +15,8 @@
 
 from pathlib import Path
 
+from termcolor import colored
+
 from onur.database import parse
 from onur.misc import info
 from onur.misc import settings
@@ -28,50 +30,58 @@ class Grab:
         """..."""
         self.all = parse.Parse().all()
         self.projects_dir = info.projects_dir
-        self.values = settings.values()
+        self.settings = settings.values()
         self.verbose = verbose
 
     def run(self) -> None:
         """..."""
-        if self.verbose:
-            print(f"options: {self.__options()}\n")
-
         for config in self.all:
-            print(f"\n{config.topic}:\n")
+            print(
+                f"""-- {colored(config.topic.capitalize(), 'cyan')}
+"""
+            )
 
-            for projekt in config.projects:
-                self.__print_info(projekt)
-                filepath = Path(self.projects_dir.joinpath(config.topic, projekt.name))
+            for key, projects in config.projects.items():
+                for projekt in projects:
+                    filepath = Path(self.projects_dir.joinpath(config.topic))
+                    if len(config.projects.keys()) > 1:
+                        filepath = filepath.joinpath(key)
 
-                if self.__checkrepo(filepath):
-                    pull.Pull(filepath).run()
-                else:
-                    klone.Klone(filepath, projekt, self.__options()).run()
+                    filepath = filepath.joinpath(projekt.name)
 
-    def __checkrepo(self, filepath: Path) -> bool:
+                    print(self.__info(projekt, filepath))
+
+                    if self.__repo_exists(filepath):
+                        pull.Pull(filepath).run()
+                    else:
+                        klone.Klone(filepath, projekt, self.__options()).run()
+
+    def __repo_exists(self, filepath: Path) -> bool:
         """."""
         return filepath.joinpath(".git", "config").exists()
 
-    def __print_info(self, projekt: dict[str]) -> None:
-        """."""
-        message = projekt.name
-
+    def __info(self, projekt: dict[str], folder: str) -> str:
+        """Collect running project information."""
         if self.verbose:
-            message += f" - {projekt.url} - {projekt.branch}"
+            return f"""{colored('name', 'yellow')}: {projekt.name}
+{colored('url', 'yellow')}: {projekt.url}
+{colored('branch', 'yellow')}: {projekt.branch}
+{colored('folder', 'yellow')}: {folder}
+"""
 
-        print(message)
+        return f"{projekt.name} - {projekt.url} - {projekt.branch} - {folder}"
 
     def __options(self) -> list[str]:
         """.."""
         options: list[str] = []
 
-        if self.values.get("quiet") and self.values.get("quiet") is False:
+        if self.settings.get("quiet") and self.settings.get("quiet") is False:
             options.append("--progress")
 
-        if self.values.get("depth"):
-            options.append(f"--depth={self.values.get('depth')}")
+        if self.settings.get("depth"):
+            options.append(f"--depth={self.settings.get('depth')}")
 
-        if self.values.get("single-branch") and self.values.get("quiet") is True:
-            options.append("--singlebranch")
+        if self.settings.get("single-branch") and self.settings.get("quiet") is True:
+            options.append("--single-branch")
 
         return options

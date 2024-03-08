@@ -23,9 +23,9 @@ p = parse.Parse()
 
 def test_one_config():
     config = info.config_dir.joinpath("etc.json").resolve()
-    assert p.one(config).projects[0].name == "guzzle"
+    assert p.one(config).projects["main"][0].name == "jakartaee-rest"
 
 
 def test_all_config():
     assert p.all()[0].topic == "misc"
-    assert p.all()[0].projects[0].name == "awesomewm"
+    assert p.all()[0].projects["oss"][0].name == "awesomewm"
